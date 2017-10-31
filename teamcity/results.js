@@ -25,7 +25,7 @@ function parseEventsIntoTests(events) {
         }
 
         if (event.name === "testSuiteFinished") {
-            activeSuite.duration = event.properties.duration
+            activeSuite.duration = parseInt(event.properties.duration)
             activeSuites.pop()
 
             activeSuite = activeSuites[activeSuites.length - 1] || null
@@ -50,13 +50,13 @@ function parseEventsIntoTests(events) {
 
         if (event.name === "testFinished") {
             activeTest.status = "passed"
-            activeTest.duration = event.properties.duration
+            activeTest.duration = parseInt(event.properties.duration)
             activeTest = null
         }
 
         if (event.name === "testIgnored") {
             activeTest.status = "ignored"
-            activeTest.duration = event.properties.duration
+            activeTest.duration = parseInt(event.properties.duration)
             activeTest.message = event.properties.message || null
             activeTest.details = event.properties.details || null
             activeTest = null
@@ -64,7 +64,7 @@ function parseEventsIntoTests(events) {
 
         if (event.name === "testFailed") {
             activeTest.status = "failed"
-            activeTest.duration = event.properties.duration
+            activeTest.duration = parseInt(event.properties.duration)
             activeTest.message = event.properties.message || null
             activeTest.details = event.properties.details || null
             activeTest = null
