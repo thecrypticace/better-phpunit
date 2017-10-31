@@ -15,10 +15,15 @@ function unescapeValue(value) {
     return value
 }
 
-function parseProperties(properties) {
-    const pattern = /(?:([a-z]+)=('|")((?:\|\||\|\2|[\s\S])*?)\2)+/ig
-    const results = pattern.exec(properties)
-    const tuples = chunk(results.slice(1), 3)
+function findPropertiesIn(str) {
+    const pattern = /(?:([a-z0-9]+)=('|")((?:\|\||\|\2|[\s\S])*?)\2\s*)+?/ig
+
+    return pattern.exec(str).slice(1)
+}
+
+function parseProperties(str) {
+    const results = findPropertiesIn(str)
+    const tuples = chunk(results, 3)
 
     // The groups captured by the regex contain the
     // type of quote as the second group. They must
