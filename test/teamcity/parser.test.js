@@ -36,4 +36,12 @@ suite("TeamCity Parser Tests", function() {
         expect(event.name).toBe("someEvent");
         expect(event.properties.key).toBe("value1\nvalue2'");
     });
+
+    test("lines can extract multiple key/value pairs", function () {
+        const event = parseLine("##teamcity[someEvent key1='value1' key2='value2']")
+
+        expect(event.name).toBe("someEvent", );
+        expect(event.properties.key1).toBe("value1");
+        expect(event.properties.key2).toBe("value2");
+    });
 });
