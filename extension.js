@@ -93,7 +93,8 @@ function getMethodName(lineNumber) {
 }
 
 function buildPHPUnitCommand(rootDirectory, fileName, filterString) {
-    let command = `${rootDirectory}/vendor/bin/phpunit --colors ${fileName} ${filterString}`
+    let logFile = `${rootDirectory}/.phpunit.teamcity.log`
+    let command = `${rootDirectory}/vendor/bin/phpunit --colors ${fileName} ${filterString} --log-teamcity ${logFile}`
 
     return command
 }
