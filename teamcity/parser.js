@@ -18,7 +18,14 @@ function unescapeValue(value) {
 function findPropertiesIn(str) {
     const pattern = /(?:([a-z0-9]+)=('|")((?:\|\||\|\2|[\s\S])*?)\2\s*)+?/ig
 
-    return pattern.exec(str).slice(1)
+    let results = []
+    let matches = []
+
+    while ((matches = pattern.exec(str)) !== null) {
+        results = results.concat(matches.slice(1))
+    }
+
+    return results
 }
 
 function parseProperties(str) {
