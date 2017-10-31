@@ -33,7 +33,7 @@ suite("TeamCity Parser Tests", function() {
     test("Team City lines handle escaped quotes", function () {
         const event = parseLine("##teamcity[someEvent key='value1|nvalue2|'']")
 
-        expect(event.name).toBe("someEvent", );
-        expect(event.properties.key).toBe("value1\nvalue2'",);
+        expect(event.name).toBe("someEvent");
+        expect(event.properties.key).toBe("value1\nvalue2'");
     });
 });
