@@ -49,7 +49,13 @@ exports.parseLine = function parseLine(line) {
     }
 
     const pattern = /^##teamcity\[([^ ]+)(.*)\]$/
-    const [_, name, properties] = pattern.exec(line)
+    const matches = pattern.exec(line)
+
+    if (!matches || matches.length < 3) {
+        return
+    }
+
+    const [_, name, properties] = matches
 
     return new Event(name, parseProperties(properties))
 }
