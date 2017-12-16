@@ -12,7 +12,7 @@ module.exports = class CommandInstance {
         this.executablePath = vscode.workspace.getConfiguration('better-phpunit').get('phpunitBinary')
             || this.findExecutablePath();
 
-        this.shellCommand = `${this.executablePath} ${this.fileName} ${this.filterString()}${this.commandSuffix()}`;
+        this.shellCommand = `${this.executablePath} --colors=auto ${this.fileName} ${this.filterString()}${this.commandSuffix()}`;
 
         this.ssh = new SSH();
 
